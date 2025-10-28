@@ -1,56 +1,25 @@
-'use client'
-
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, Trophy, Wrench, ArrowRight } from "lucide-react"
-import { useEffect, useState } from "react"
+
+// Images
+import proyecto_1 from '@/app/assets/proyectos/proyecto_1.jpg'
+import proyecto_2 from '@/app/assets/proyectos/proyecto_2.jpg'
+import proyecto_3 from '@/app/assets/proyectos/proyecto_3.jpg'
+import proyecto_4 from '@/app/assets/proyectos/proyecto_4.jpg'
+
 
 export default function ProjectsPage() {
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/proyectos/proyecto_1.jpg',
-          '/proyectos/proyecto_2.jpg',
-          '/proyectos/proyecto_3.jpg',
-          '/proyectos/proyecto_4.jpg',
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
-
-
-
-
   const projects = [
     {
       id: "baja-uc-2024",
       title: "Baja UC 2024",
       year: "2024",
       status: "En Desarrollo",
-      image: urlMap['/proyectos/proyecto_1.jpg'] || "/placeholder.svg",
+      image: proyecto_1,
       description:
         "Nuestro proyecto más reciente incorpora mejoras significativas en el sistema de suspensión y transmisión, basadas en el aprendizaje de competencias anteriores.",
       highlights: [
@@ -66,7 +35,7 @@ export default function ProjectsPage() {
       title: "Baja UC 2023",
       year: "2023",
       status: "Completado",
-      image: urlMap['/proyectos/proyecto_2.jpg'] || "/placeholder.svg",
+      image: proyecto_2,
       description:
         "Este vehículo nos llevó a obtener el premio a mejor diseño en la competencia regional, destacando por su innovación en aerodinámica y eficiencia estructural.",
       highlights: [
@@ -82,7 +51,7 @@ export default function ProjectsPage() {
       title: "Baja UC 2022",
       year: "2022",
       status: "Completado",
-      image: urlMap['/proyectos/proyecto_3.jpg'] || "/placeholder.svg",
+      image: proyecto_3,
       description:
         "Nuestro vehículo de 2022 demostró excepcional resistencia y durabilidad, logrando el primer lugar en las pruebas de resistencia de la competencia nacional.",
       highlights: [
@@ -102,7 +71,7 @@ export default function ProjectsPage() {
       title: "Baja UC 2021",
       year: "2021",
       status: "Completado",
-      image: urlMap['/proyectos/proyecto_4.jpg'] || "/placeholder.svg",
+      image: proyecto_4,
       description:
         "Proyecto que marcó un punto de inflexión en nuestro equipo, implementando por primera vez análisis FEA completo y simulaciones CFD en el proceso de diseño.",
       highlights: [

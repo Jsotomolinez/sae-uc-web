@@ -1,45 +1,13 @@
-'use client'
-
 import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
-import { useEffect, useState } from "react";
+
+// Images
+import logo from '@/app/assets/patrocinadores/logo.jpg'
+
+
 
 export function Footer() {
-   const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-  
-    useEffect(() => {
-      const fetchImages = async () => {
-        try {
-          const paths = [
-            '/patrocinadores/logo.jpg',
-          ];
-          const res = await fetch('/api/dropbox', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ paths }),
-          });
-          const data = await res.json();
-          if (res.ok && data?.results) {
-            setUrlMap(data.results as Record<string, string>);
-          } else {
-            console.warn('API /api/dropbox returned error', data);
-            setUrlMap({});
-          }
-        } catch (err) {
-          console.warn('Error fetching /api/dropbox', err);
-          setUrlMap({});
-        }
-      };
-      fetchImages();
-    }, []);
-  
-
-
-
-
-
-
   const services = ["Diseño CAD", "Manufactura", "Consultoría Técnica", "Capacitación"]
 
   const quickLinks = [
@@ -50,9 +18,9 @@ export function Footer() {
   ]
 
   const sponsors = [
-    { name: "Patrocinador 1", logo: urlMap['/patrocinadores/logo.jpg'] || "/placeholder.svg" },
-    { name: "Patrocinador 2", logo: urlMap['/patrocinadores/logo.jpg'] || "/placeholder.svg" },
-    { name: "Patrocinador 3", logo: urlMap['/patrocinadores/logo.jpg'] || "/placeholder.svg" },
+    { name: "Patrocinador 1", logo: logo },
+    { name: "Patrocinador 2", logo: logo },
+    { name: "Patrocinador 3", logo: logo },
   ]
 
   return (

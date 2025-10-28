@@ -1,48 +1,16 @@
-'use client'
-
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Wrench, Cpu, GraduationCap, FileText, CheckCircle2, ArrowRight } from "lucide-react"
-import { useEffect, useState } from "react"
-import { url } from "inspector"
+
+// Images
+import prinicipal from '@/app/assets/index/principal.jpg'
+import sobre_sae_uc from '@/app/assets/index/sobre_sae_uc.jpg'
 
 export default function ServicesPage() {
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/index/principal.jpg',
-          '/index/sobre_sae_uc.jpg',
-          '/index/proyectos_destacados_1.jpg',
-          '/index/proyectos_destacados_2.jpg',
-          '/index/proyectos_destacados_3.jpg',
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
-
+ 
 
   const services = [
     {
@@ -57,7 +25,7 @@ export default function ServicesPage() {
         "Optimización topológica",
         "Generación de planos técnicos",
       ],
-      image: urlMap['/index/principal.jpg'] || "/placeholder.svg",
+      image: prinicipal,
     },
     {
       icon: Wrench,
@@ -71,7 +39,7 @@ export default function ServicesPage() {
         "Doblado y conformado de tubería",
         "Ensamblaje de sistemas mecánicos",
       ],
-      image: urlMap['/index/sobre_sae_uc.jpg'] || "/placeholder.svg",
+      image: sobre_sae_uc,
     },
     {
       icon: FileText,
@@ -85,7 +53,7 @@ export default function ServicesPage() {
         "Documentación técnica",
         "Gestión de proyectos de ingeniería",
       ],
-      image: urlMap['/index/principal.jpg'] || "/placeholder.svg",
+      image: prinicipal,
     },
     {
       icon: GraduationCap,
@@ -99,7 +67,7 @@ export default function ServicesPage() {
         "Seminarios de análisis estructural",
         "Gestión de proyectos técnicos",
       ],
-      image: urlMap['/index/sobre_sae_uc.jpg'] || "/placeholder.svg",
+      image: sobre_sae_uc,
     },
   ]
 
@@ -174,7 +142,7 @@ export default function ServicesPage() {
                 </div>
                 <div className={`relative aspect-4/3 ${index % 2 === 1 ? "lg:order-1" : ""}`}>
                   <Image
-                    src={service.image || "/placeholder.svg"}
+                    src={service.image}
                     alt={service.title}
                     fill
                     className="object-cover rounded-lg shadow-lg"

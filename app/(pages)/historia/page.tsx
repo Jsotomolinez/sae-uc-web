@@ -1,44 +1,17 @@
-'use client'
-
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Trophy, Users, Wrench, Rocket } from "lucide-react"
-import { useEffect, useState } from "react"
+
+// Images
+import proyecto_1 from '@/app/assets/proyectos/proyecto_1.jpg'
+import proyecto_2 from '@/app/assets/proyectos/proyecto_2.jpg'
+import proyecto_3 from '@/app/assets/proyectos/proyecto_3.jpg'
+import proyecto_4 from '@/app/assets/proyectos/proyecto_4.jpg'
 
 export default function TimelinePage() {
 
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/proyectos/proyecto_1.jpg',
-          '/proyectos/proyecto_2.jpg',
-          '/proyectos/proyecto_3.jpg',
-          '/proyectos/proyecto_4.jpg',
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
+ 
 
 
   const milestones = [
@@ -47,7 +20,7 @@ export default function TimelinePage() {
       title: "Fundación de SAE UC",
       description:
         "Un grupo de estudiantes apasionados por la ingeniería automotriz funda la Sociedad de Ingenieros Automotrices en la Universidad de Carabobo.",
-      image: urlMap['/proyectos/proyecto_1.jpg'],
+      image: proyecto_1,
       icon: Users,
       achievements: ["Registro oficial del equipo", "Primeros 15 miembros fundadores", "Establecimiento de objetivos"],
     },
@@ -56,7 +29,7 @@ export default function TimelinePage() {
       title: "Primer Vehículo Baja",
       description:
         "Diseño y construcción de nuestro primer vehículo Baja SAE. Un hito importante que marcó el inicio de nuestra participación en competencias.",
-      image: urlMap['/proyectos/proyecto_2.jpg'],
+      image: proyecto_2,
       icon: Wrench,
       achievements: [
         "Primer vehículo completado",
@@ -69,7 +42,7 @@ export default function TimelinePage() {
       title: "Primera Victoria Regional",
       description:
         "Logramos nuestro primer reconocimiento importante al ganar el premio a Mejor Equipo Novato en la competencia regional.",
-      image: urlMap['/proyectos/proyecto_3.jpg'],
+      image: proyecto_3,
       icon: Trophy,
       achievements: ["Mejor Equipo Novato", "Reconocimiento nacional", "Expansión del equipo a 25 miembros"],
     },
@@ -78,7 +51,7 @@ export default function TimelinePage() {
       title: "Competencia Internacional",
       description:
         "Primera participación en una competencia internacional Baja SAE, representando a Venezuela y la Universidad de Carabobo.",
-      image: urlMap['/proyectos/proyecto_4.jpg'],
+      image: proyecto_4,
       icon: Rocket,
       achievements: [
         "Participación internacional",
@@ -91,7 +64,7 @@ export default function TimelinePage() {
       title: "Innovación Tecnológica",
       description:
         "Implementación de análisis FEA y simulaciones CFD en nuestro proceso de diseño, elevando la calidad técnica de nuestros proyectos.",
-      image: urlMap['/proyectos/proyecto_1.jpg'],
+      image: proyecto_1,
       icon: Wrench,
       achievements: [
         "Adopción de software profesional",
@@ -104,7 +77,7 @@ export default function TimelinePage() {
       title: "Mejor Diseño Nacional",
       description:
         "Nuestro vehículo Baja UC 2023 gana el premio a Mejor Diseño en la competencia nacional, consolidando nuestra reputación de excelencia.",
-      image: urlMap['/proyectos/proyecto_2.jpg'],
+      image: proyecto_2,
       icon: Trophy,
       achievements: ["Mejor Diseño Nacional", "2do Lugar General", "Reconocimiento de la industria"],
     },
@@ -113,7 +86,7 @@ export default function TimelinePage() {
       title: "Expansión de Servicios",
       description:
         "Lanzamiento de servicios de ingeniería para la comunidad, ofreciendo diseño CAD, manufactura y consultoría técnica.",
-      image: urlMap['/proyectos/proyecto_4.jpg'],
+      image: proyecto_4,
       icon: Rocket,
       achievements: ["Nuevos servicios de ingeniería", "Alianzas con empresas locales", "Más de 30 miembros activos"],
     },

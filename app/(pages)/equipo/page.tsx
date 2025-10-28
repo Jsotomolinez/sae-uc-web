@@ -1,52 +1,24 @@
-'use client'
-
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Mail, Linkedin, ArrowRight } from "lucide-react"
-import { useEffect, useState } from "react"
+
+// Images
+import equipo from '@/app/assets/equipo/equipo.png'
+import placeholder from '@/app/assets/equipo/placeholder.png'
+import placeholder_2 from '@/app/assets/equipo/placeholder_2.png'
 
 export default function TeamPage() {
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/equipo/equipo.png',
-          '/equipo/placeholder.png',
-          '/equipo/placeholder_2.png',
-
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
+  
 
   const leadership = [
     {
       name: "Carlos Rodríguez",
       role: "Capitán del Equipo",
       department: "Ingeniería Mecánica",
-      image: urlMap['/equipo/placeholder.png'],
+      image: placeholder,
       bio: "Lidera el equipo con 3 años de experiencia en Baja SAE, especializado en diseño de chasis y gestión de proyectos.",
       email: "carlos.rodriguez@saeuc.org",
       linkedin: "#",
@@ -55,7 +27,7 @@ export default function TeamPage() {
       name: "María González",
       role: "Jefa de Diseño",
       department: "Ingeniería Mecánica",
-      image: urlMap['/equipo/placeholder_2.png'],
+      image: placeholder_2,
       bio: "Experta en CAD y análisis FEA, responsable del diseño estructural y optimización de componentes.",
       email: "maria.gonzalez@saeuc.org",
       linkedin: "#",
@@ -64,7 +36,7 @@ export default function TeamPage() {
       name: "Luis Martínez",
       role: "Jefe de Manufactura",
       department: "Ingeniería Industrial",
-      image: urlMap['/equipo/placeholder.png'],
+      image: placeholder,
       bio: "Coordina todos los procesos de fabricación y ensamblaje, con experiencia en soldadura y maquinado CNC.",
       email: "luis.martinez@saeuc.org",
       linkedin: "#",
@@ -76,37 +48,37 @@ export default function TeamPage() {
       name: "Chasis y Estructura",
       description: "Diseño y análisis del chasis, jaula de seguridad y componentes estructurales",
       members: 6,
-      icon: "/chassis-icon.svg",
+      // icon: "/chassis-icon.svg",
     },
     {
       name: "Suspensión y Dirección",
       description: "Desarrollo del sistema de suspensión, dirección y geometría de ruedas",
       members: 5,
-      icon: "/suspension-icon.svg",
+      // icon: "/suspension-icon.svg",
     },
     {
       name: "Transmisión y Motor",
       description: "Optimización del motor, sistema CVT y transmisión de potencia",
       members: 5,
-      icon: "/engine-icon.svg",
+      // icon: "/engine-icon.svg",
     },
     {
       name: "Frenos y Sistemas",
       description: "Diseño de sistema de frenado, eléctrico y componentes auxiliares",
       members: 4,
-      icon: "/brakes-icon.svg",
+      // icon: "/brakes-icon.svg",
     },
     {
       name: "Manufactura",
       description: "Fabricación, soldadura, maquinado y ensamblaje de componentes",
       members: 6,
-      icon: "/manufacturing-icon.svg",
+      // icon: "/manufacturing-icon.svg",
     },
     {
       name: "Gestión y Finanzas",
       description: "Administración del proyecto, búsqueda de patrocinios y logística",
       members: 4,
-      icon: "/management-icon.svg",
+      // icon: "/management-icon.svg",
     },
   ]
 
@@ -134,7 +106,7 @@ export default function TeamPage() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="relative aspect-21/9 rounded-lg overflow-hidden shadow-2xl">
-            <Image src={urlMap['/equipo/equipo.png']} alt="Equipo SAE UC completo" fill className="object-cover" />
+            <Image src={equipo} alt="Equipo SAE UC completo" fill className="object-cover" />
           </div>
         </div>
       </section>

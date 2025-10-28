@@ -6,6 +6,9 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+// Images
+import logo from '@/app/assets/logo.png'
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -24,7 +27,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/assets/logo.png"
+            src={logo}
             alt="SAE UC Logo"
             width={120}
             height={40}

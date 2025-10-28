@@ -1,12 +1,10 @@
-'use client'
-
 import Image from "next/image"
 import { Building2, MapPin, Phone, Mail, Briefcase, Heart } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { useEffect, useState } from "react"
 
-
+// Images
+import logo from '@/app/assets/patrocinadores/logo.jpg'
 
 
 const tierColors = {
@@ -17,40 +15,13 @@ const tierColors = {
 
 export default function PatrocinadoresPage() {
 
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/patrocinadores/logo.jpg',
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
+  
 
   const sponsors = [
     {
       id: 1,
       name: "Industrias Metalúrgicas CA",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Manufactura y Metalurgia",
       contributions: [
         "Fabricación de componentes estructurales",
@@ -67,7 +38,7 @@ export default function PatrocinadoresPage() {
     {
       id: 2,
       name: "AutoPartes del Centro",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Distribución de Autopartes",
       contributions: [
         "Suministro de componentes automotrices",
@@ -84,7 +55,7 @@ export default function PatrocinadoresPage() {
     {
       id: 3,
       name: "Universidad de Carabobo",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Educación Superior",
       contributions: ["Instalaciones y talleres", "Apoyo académico y administrativo", "Financiamiento para competencias"],
       location: "Valencia, Carabobo, Venezuela",
@@ -97,7 +68,7 @@ export default function PatrocinadoresPage() {
     {
       id: 4,
       name: "TechSolutions Engineering",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Ingeniería y Consultoría",
       contributions: [
         "Software de diseño CAD/CAM",
@@ -114,7 +85,7 @@ export default function PatrocinadoresPage() {
     {
       id: 5,
       name: "Lubricantes Premium",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Productos Automotrices",
       contributions: ["Suministro de lubricantes y fluidos", "Productos de mantenimiento", "Apoyo económico"],
       location: "Valencia, Carabobo, Venezuela",
@@ -127,7 +98,7 @@ export default function PatrocinadoresPage() {
     {
       id: 6,
       name: "Neumáticos del Caribe",
-      logo: urlMap['/patrocinadores/logo.jpg'],
+      logo: logo,
       field: "Neumáticos y Suspensión",
       contributions: [
         "Suministro de neumáticos especializados",

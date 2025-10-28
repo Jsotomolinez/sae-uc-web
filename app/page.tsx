@@ -1,49 +1,20 @@
-'use client'
-
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Users, Trophy, Wrench, GraduationCap } from "lucide-react"
+import { PorqueUnirte, ProyectoDestacado } from '@/components/pages/index'
+
+// Images
+import prinicipal from '@/app/assets/index/principal.jpg'
+import sobre_sae_uc from '@/app/assets/index/sobre_sae_uc.jpg'
+import proyecto_destacado_1 from '@/app/assets/index/proyectos_destacados_1.jpg'
+import proyecto_destacado_2 from '@/app/assets/index/proyectos_destacados_2.jpg'
+import proyecto_destacado_3 from '@/app/assets/index/proyectos_destacados_3.jpg'
+
+
 
 export default function HomePage() {
-  const [urlMap, setUrlMap] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const paths = [
-          '/index/principal.jpg',
-          '/index/sobre_sae_uc.jpg',
-          '/index/proyectos_destacados_1.jpg',
-          '/index/proyectos_destacados_2.jpg',
-          '/index/proyectos_destacados_3.jpg',
-        ];
-        const res = await fetch('/api/dropbox', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ paths }),
-        });
-        const data = await res.json();
-        if (res.ok && data?.results) {
-          setUrlMap(data.results as Record<string, string>);
-        } else {
-          console.warn('API /api/dropbox returned error', data);
-          setUrlMap({});
-        }
-      } catch (err) {
-        console.warn('Error fetching /api/dropbox', err);
-        setUrlMap({});
-      }
-    };
-    fetchImages();
-  }, []);
-
-  
-
-  
-
 
   const stats = [
     { label: "Años de Experiencia", value: "10+" },
@@ -102,7 +73,7 @@ export default function HomePage() {
             </div>
             <div className="relative aspect-4/3 lg:aspect-square">
               <Image
-                src={urlMap['/index/principal.jpg'] || "/assets/placeholder.svg"}
+                src={prinicipal}
                 alt="Vehículo Baja SAE en competencia"
                 fill
                 className="object-cover rounded-lg shadow-2xl"
@@ -133,7 +104,7 @@ export default function HomePage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="relative aspect-4/3">
               <Image
-                src={urlMap['/index/sobre_sae_uc.jpg'] || "/assets/placeholder.svg"}
+                src={sobre_sae_uc}
                 alt="Equipo SAE UC trabajando"
                 fill
                 className="object-cover rounded-lg shadow-lg"
@@ -180,33 +151,25 @@ export default function HomePage() {
                 {
                   title: "Baja UC 2024",
                   description: "Nuestro vehículo más reciente con mejoras en suspensión y transmisión",
-                  image: urlMap['/index/proyectos_destacados_1.jpg'],
+                  image: proyecto_destacado_1.src,
                 },
                 {
                   title: "Baja UC 2023",
                   description: "Ganador del premio a mejor diseño en la competencia regional",
-                  image: urlMap['/index/proyectos_destacados_2.jpg'],
+                  image: proyecto_destacado_2.src,
                 },
                 {
                   title: "Baja UC 2022",
                   description: "Primer lugar en pruebas de resistencia y durabilidad",
-                  image: urlMap['/index/proyectos_destacados_3.jpg'],
+                  image: proyecto_destacado_3.src,
                 },
               ].map((project) => (
-                <Card key={project.title} className="overflow-hidden group hover:shadow-lg transition-shadow">
-                  <div className="relative aspect-3/2">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
-                      alt={project.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <CardContent className="p-6 space-y-2">
-                    <h3 className="text-xl font-semibold">{project.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{project.description}</p>
-                  </CardContent>
-                </Card>
+                <ProyectoDestacado
+                  key={project.title}
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                />
               ))}
             </div>
             <div className="text-center">
@@ -234,15 +197,12 @@ export default function HomePage() {
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {benefits.map((benefit) => (
-                <Card key={benefit.title} className="text-center p-6 hover:shadow-lg transition-shadow">
-                  <CardContent className="space-y-4 p-0">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10">
-                      <benefit.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold">{benefit.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
-                  </CardContent>
-                </Card>
+                <PorqueUnirte
+                  key={benefit.title}
+                  title={benefit.title}
+                  description={benefit.description}
+                  icon={benefit.icon}
+                />
               ))}
             </div>
           </div>
