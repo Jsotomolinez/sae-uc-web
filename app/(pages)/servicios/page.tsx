@@ -219,7 +219,7 @@ export default function ServicesPage() {
             </div>
             <div className="relative aspect-square">
               <Image
-                src="/engineering-team-working-together.jpg"
+                src={sobre_sae_uc}
                 alt="Equipo trabajando"
                 fill
                 className="object-cover rounded-lg shadow-lg"

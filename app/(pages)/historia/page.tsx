@@ -11,7 +11,7 @@ import proyecto_4 from '@/app/assets/proyectos/proyecto_4.jpg'
 
 export default function TimelinePage() {
 
- 
+
 
 
   const milestones = [
@@ -142,7 +142,7 @@ export default function TimelinePage() {
                 <div key={milestone.year} className="relative">
                   {/* Timeline Line */}
                   {index !== milestones.length - 1 && (
-                    <div className="absolute left-8 top-24 bottom-0 w-0.5 bg-border md:left-1/2 md:-ml-px" />
+                    <div className="hidden md:block absolute left-8 top-24 bottom-0 w-0.5 bg-border md:left-1/2 md:-ml-px" />
                   )}
 
                   <div className="grid gap-8 md:grid-cols-2 md:gap-12">

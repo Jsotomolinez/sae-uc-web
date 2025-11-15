@@ -3,7 +3,8 @@ import Image from "next/image"
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 
 // Images
-import logo from '@/app/assets/patrocinadores/logo.jpg'
+import sponsorLogo from '@/app/assets/patrocinadores/logo.jpg'
+import logo from '@/app/assets/logo.png'
 
 
 
@@ -18,9 +19,9 @@ export function Footer() {
   ]
 
   const sponsors = [
-    { name: "Patrocinador 1", logo: logo },
-    { name: "Patrocinador 2", logo: logo },
-    { name: "Patrocinador 3", logo: logo },
+    { name: "Patrocinador 1", logo: sponsorLogo },
+    { name: "Patrocinador 2", logo: sponsorLogo },
+    { name: "Patrocinador 3", logo: sponsorLogo },
   ]
 
   return (
@@ -30,7 +31,7 @@ export function Footer() {
           {/* About Section */}
           <div className="space-y-4">
             <Image
-              src="/assets/logo.png"
+              src={logo}
               alt="SAE UC Logo"
               width={140}
               height={50}
